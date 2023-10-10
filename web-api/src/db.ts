@@ -32,6 +32,9 @@ const dbConnectionString = atlas
   ? getAtlasConnectionString()
   : getLocalConnectionString()
 
+console.log('dbConnectionString:', dbConnectionString)
+
 mongoose.connect(dbConnectionString, {
+  useNewUrlParser: true,
   useUnifiedTopology: true,
 } as ConnectOptions)

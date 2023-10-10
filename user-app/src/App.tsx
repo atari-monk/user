@@ -3,6 +3,7 @@ import Navigation from './component/Navigation'
 import About from './page/About'
 import Home from './page/Home'
 import './App.css'
+import ApiTester from './page/ApiTester'
 
 function App() {
   return (
@@ -10,11 +11,9 @@ function App() {
       <div className="App-header">
         <Navigation />
         <Routes>
-          {' '}
-          {/* Updated to use <Routes> */}
-          <Route path="/about" element={<About />} /> {/* Updated syntax */}
-          {/* Add more routes for additional pages */}
-          <Route path="/" element={<Home />} /> {/* Updated syntax */}
+          <Route path="/about" element={<About />} />
+          <Route path="/api-tester" element={<ApiTester />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </Router>

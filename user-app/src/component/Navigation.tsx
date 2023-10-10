@@ -7,12 +7,20 @@ const Navigation: React.FC = () => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" className="App-link">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/api-tester" className="App-link">
+            API Tester
+          </Link>
         </li>
-        {/* Add more links for additional pages */}
+        <li>
+          <Link to="/about" className="App-link">
+            About
+          </Link>
+        </li>
       </ul>
     </nav>
   )
