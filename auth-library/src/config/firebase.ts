@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: 'atari-monk-auth',
   storageBucket: 'atari-monk-auth.appspot.com',
   messagingSenderId: '56849459287',
-  appId: '1:56849459287:web:12162f5616f1772bbf9b12',
+  appId: '1:56849459287:web:0f2837eaca13f2b0bf9b12',
 }
 
 const firebaseApp = initializeApp(firebaseConfig)

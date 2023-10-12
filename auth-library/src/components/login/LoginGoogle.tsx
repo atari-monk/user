@@ -7,11 +7,11 @@ import {
 import { signOut } from 'firebase/auth'
 import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps'
 import { AuthContext } from './../auth/AuthContext'
-import axios, { AxiosError } from 'axios'
 
 export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
   config,
   setMessage,
+  axiosInstance,
 }) => {
   const { isLoggedIn, setIsLoggedIn, setUserId } = useContext(AuthContext)
 
@@ -63,21 +63,26 @@ export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
 
   const createUser = async (email: string, displayName: string) => {
     try {
-      await axios.post(`${config.apiUrl}/users`, {
-        email: email,
-        displayName: displayName,
+      await axiosInstance.post(`${config.apiUrl}/users`, {
+        email,
+        displayName,
       })
     } catch (error) {
-      console.log('Response:', (error as AxiosError).response?.data)
+      console.error(error)
+      console.error(
+        `Failed to create record for email: ${email} and name: ${displayName}`
+      )
     }
   }
 
   const getUserIdByEmail = async (email: string) => {
     try {
-      const response = await axios.get(`${config.apiUrl}/users/email/${email}`)
+      const response = await axiosInstance.get(
+        `${config.apiUrl}/users/email/${email}`
+      )
       return response.data.userId
     } catch (error) {
-      console.error('Failed to get userId:', error)
+      console.error(`No record of user for email ${email}`)
       return null
     }
   }

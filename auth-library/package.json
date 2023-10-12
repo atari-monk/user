@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "node ./script/copy-package.js && tsc",
+    "i-lib": "powershell.exe -ExecutionPolicy Bypass -File .\\script\\i-lib.ps1"
   },
   "keywords": [],
-  "author": "",
+  "author": "atari-monk",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^18.2.24",
@@ -15,7 +16,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "axios": "^1.5.1",
     "firebase": "^10.4.0"
   }
 }
