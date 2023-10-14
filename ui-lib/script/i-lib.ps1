@@ -1,6 +1,6 @@
 $proj = "C:\atari-monk\Code\user\"
-$folder = "auth-lib\build\"
-$pack = "auth-lib-1.0.0.tgz"
+$folder = "ui-lib\build\"
+$pack = "ui-lib-1.0.0.tgz"
 $lib = $proj + $folder + $pack
 
 npm i
