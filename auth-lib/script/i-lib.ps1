@@ -8,6 +8,11 @@ npm run build
 Set-Location build
 npm pack
 
+$uiLib = $proj + "ui-lib\"
+Copy-Item $lib $uiLib
+Set-Location $uiLib
+npm i (Get-Item $pack).Name
+
 $userApp = $proj + "user-app\"
 Copy-Item $lib $userApp
 Set-Location $userApp

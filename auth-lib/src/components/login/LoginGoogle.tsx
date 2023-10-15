@@ -8,7 +8,7 @@ import { signOut } from 'firebase/auth'
 import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps'
 import { AuthContext } from './../auth/AuthContext'
 
-export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
+const LoginGoogle: React.FC<ILoginGoogleProps> = ({
   config,
   setMessage,
   axiosInstance,
@@ -101,3 +101,5 @@ export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
     </div>
   )
 }
+
+export default LoginGoogle
