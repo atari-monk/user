@@ -39,10 +39,34 @@ export const setDarkMode = (darkMode: boolean) => {
   }
 }
 
-export const DefaultContainer = styled.div`
+//styles supporting dark/light feature
+
+export const AppDiv = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--background-color);
   color: var(--text-color);
+`
+
+export const AppNameH1 = styled.h1`
+  font-size: 24px;
+`
+
+export const MenuDiv = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
+export const AppMenuDiv = styled.div`
+  display: grid;
+  grid-template-rows: auto auto 1fr; /* Three rows: app name, buttons row, and message */
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+`
+
+export const MessageP = styled.p`
+  margin-top: 20px;
 `
