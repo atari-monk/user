@@ -12,8 +12,8 @@ const Navigation: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link to="/api-tester" className="App-link">
-            API Tester
+          <Link to="/user_form" className="App-link">
+            User Form
           </Link>
         </li>
         <li>

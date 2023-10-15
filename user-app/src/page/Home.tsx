@@ -1,12 +1,12 @@
 import React from 'react'
-import { DefaultContainer } from 'ui-lib'
+import { AppDiv } from 'ui-lib'
 
 const Home: React.FC = () => {
   return (
-    <DefaultContainer>
+    <AppDiv>
       <h2>Home Page</h2>
       <p>This is the home page content.</p>
-    </DefaultContainer>
+    </AppDiv>
   )
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 
-const ApiTesterForm: React.FC = () => {
+const UserForm: React.FC = () => {
   const initialFormData = {
     name: '',
     email: '',
@@ -77,4 +77,4 @@ const ApiTesterForm: React.FC = () => {
   )
 }
 
-export default ApiTesterForm
+export default UserForm
