@@ -54,9 +54,6 @@ export const updateUser = async (req: Request, res: Response) => {
     if (displayName) {
       user.displayName = displayName;
     }
-    if (maxRecords) {
-      user.maxRecords = maxRecords;
-    }
     await user.save();
     res.json(user);
   } catch (error) {

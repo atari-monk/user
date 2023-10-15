@@ -1,10 +1,8 @@
-import mongoose, { Schema, Model } from 'mongoose';
-import { IUser } from './IUser';
-import validator from 'validator';
+import mongoose, { Schema, Model } from 'mongoose'
+import { IUser } from './IUser'
+import validator from 'validator'
 
-const typeName = 'User';
-
-const userSchema: Schema<IUser> = new Schema<IUser>({
+const schema: Schema<IUser> = new Schema<IUser>({
   email: {
     type: String,
     required: true,
@@ -14,9 +12,8 @@ const userSchema: Schema<IUser> = new Schema<IUser>({
     },
   },
   displayName: { type: String, required: true },
-  maxRecords: { type: Number, required: true, default: 500 },
-});
+})
 
-const User: Model<IUser> = mongoose.model<IUser>(typeName, userSchema);
+const User: Model<IUser> = mongoose.model<IUser>('User', schema)
 
-export default User;
+export default User

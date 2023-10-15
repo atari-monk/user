@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import './db'
 import userRouter from './routes/user-router'
+import appRouter from './routes/app-router'
 
 dotenv.config({ path: path.resolve(__dirname, './../.env') })
 
@@ -13,5 +14,6 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/apps', appRouter)
 
 export default app
