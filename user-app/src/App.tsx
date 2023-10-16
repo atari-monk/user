@@ -9,6 +9,7 @@ import { AuthContext, appConfig } from 'auth-lib'
 import axios from 'axios'
 import { AppDiv, AppMenu } from 'ui-lib'
 import AppForm from './page/AppForm'
+import AppList from './page/AppList'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -25,11 +26,13 @@ const App: React.FC = () => {
             {isLoggedIn ? (
               <>
                 <Route path="/user_form" element={<UserForm />} />
+                <Route path="/app_list" element={<AppList />} />
                 <Route path="/app_form" element={<AppForm />} />
               </>
             ) : (
               <>
                 <Route path="/user_form" element={<p>Log in to see forms</p>} />
+                <Route path="/app_list" element={<p>Log in to see forms</p>} />
                 <Route path="/app_form" element={<p>Log in to see forms</p>} />
               </>
             )}

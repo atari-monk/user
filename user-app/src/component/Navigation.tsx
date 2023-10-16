@@ -17,6 +17,11 @@ const Navigation: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link to="/app_list" className="App-link">
+            App List
+          </Link>
+        </li>
+        <li>
           <Link to="/app_form" className="App-link">
             App Form
           </Link>
