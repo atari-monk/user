@@ -3,6 +3,8 @@ import * as appController from '../controllers/app-controller'
 
 const router = express.Router()
 
-router.route('/').post(appController.createApp)
+router.route('/').get(appController.getApps).post(appController.createApp)
+
+router.route('/:id').patch(appController.updateApp)
 
 export default router
