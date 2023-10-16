@@ -27,12 +27,10 @@ function getLocalConnectionString() {
   return cs
 }
 
-const atlas = false
+const atlas = true
 const dbConnectionString = atlas
   ? getAtlasConnectionString()
   : getLocalConnectionString()
-
-console.log('dbConnectionString:', dbConnectionString)
 
 mongoose.connect(dbConnectionString, {
   useNewUrlParser: true,
