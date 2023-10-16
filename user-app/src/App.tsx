@@ -3,11 +3,12 @@ import Navigation from './component/Navigation'
 import About from './page/About'
 import Home from './page/Home'
 import './App.css'
-import ApiTester from './page/UserForm'
+import UserForm from './page/UserForm'
 import { useContext } from 'react'
 import { AuthContext, appConfig } from 'auth-lib'
 import axios from 'axios'
 import { AppDiv, AppMenu } from 'ui-lib'
+import AppForm from './page/AppForm'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -22,9 +23,15 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
             {isLoggedIn ? (
-              <Route path="/user_form" element={<ApiTester />} />
+              <>
+                <Route path="/user_form" element={<UserForm />} />
+                <Route path="/app_form" element={<AppForm />} />
+              </>
             ) : (
-              <Route path="/user_form" element={<p>Log in to see pages</p>} />
+              <>
+                <Route path="/user_form" element={<p>Log in to see forms</p>} />
+                <Route path="/app_form" element={<p>Log in to see forms</p>} />
+              </>
             )}
           </Routes>
         </div>
