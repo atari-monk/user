@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { App } from './App'
+import { IApp } from './IApp'
 
 const AppList: React.FC = () => {
-  const [apps, setApps] = useState<App[]>([])
+  const [apps, setApps] = useState<IApp[]>([])
 
   useEffect(() => {
     // Fetch the list of apps from your API
@@ -28,6 +29,8 @@ const AppList: React.FC = () => {
             <strong>Name:</strong> {app.name}
             <br />
             <strong>Description:</strong> {app.desc}
+            <br />
+            <Link to={`/app_edit/${app._id}`}>Edit</Link>
           </li>
         ))}
       </ul>

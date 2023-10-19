@@ -1,4 +1,4 @@
-export interface App {
+export interface IApp {
   _id: string
   name: string
   desc: string

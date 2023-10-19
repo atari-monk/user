@@ -10,6 +10,7 @@ import axios from 'axios'
 import { AppDiv, AppMenu } from 'ui-lib'
 import AppForm from './page/AppForm'
 import AppList from './page/AppList'
+import AppEdit from './component/AppEdit'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -27,6 +28,7 @@ const App: React.FC = () => {
               <>
                 <Route path="/user_form" element={<UserForm />} />
                 <Route path="/app_list" element={<AppList />} />
+                <Route path="/app_edit/:appId" element={<AppEdit />} />
                 <Route path="/app_form" element={<AppForm />} />
               </>
             ) : (
