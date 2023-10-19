@@ -49,3 +49,18 @@ export const updateApp = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to update app' })
   }
 }
+
+export const getAppById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params // Get the app ID from the request parameters
+    const app = await App.findById(id, '-__v') // Find the app by ID and exclude the '__v' field
+
+    if (!app) {
+      return res.status(404).json({ error: 'App not found' })
+    }
+
+    res.json(app)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch app by ID' })
+  }
+}
