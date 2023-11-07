@@ -1,7 +1,7 @@
 import mongoose, { Schema, Model } from 'mongoose'
 import { IAppConfig } from './IAppConfig'
 
-const schema: Schema<IAppConfig> = new Schema<IAppConfig>({
+const AppConfigSchema: Schema<IAppConfig> = new Schema<IAppConfig>({
   userId: { type: String, required: true },
   appId: { type: String, required: true },
   maxRecords: { type: Number, required: true },
@@ -9,7 +9,7 @@ const schema: Schema<IAppConfig> = new Schema<IAppConfig>({
 
 const AppConfig: Model<IAppConfig> = mongoose.model<IAppConfig>(
   'AppConfig',
-  schema
+  AppConfigSchema
 )
 
 export default AppConfig

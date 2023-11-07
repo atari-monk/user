@@ -2,7 +2,7 @@ import mongoose, { Schema, Model } from 'mongoose'
 import { IUser } from './IUser'
 import validator from 'validator'
 
-const schema: Schema<IUser> = new Schema<IUser>({
+const UserSchema: Schema<IUser> = new Schema<IUser>({
   email: {
     type: String,
     required: true,
@@ -14,6 +14,6 @@ const schema: Schema<IUser> = new Schema<IUser>({
   displayName: { type: String, required: true },
 })
 
-const User: Model<IUser> = mongoose.model<IUser>('User', schema)
+const User: Model<IUser> = mongoose.model<IUser>('User', UserSchema)
 
 export default User
