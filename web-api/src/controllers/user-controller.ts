@@ -1,75 +1,90 @@
-import { Request, Response } from 'express';
-import User from '../models/User';
+import { Request, Response } from 'express'
+import User from '../models/User'
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { email, displayName, maxRecords } = req.body;
-    const existingUser = await User.findOne({ email });
+    const { email, displayName, maxRecords } = req.body
+    const existingUser = await User.findOne({ email })
     if (existingUser) {
-      return res.status(409).json({ error: 'Email already exists' });
+      return res.status(409).json({ error: 'Email already exists' })
     }
-    const user = new User({ email, displayName, maxRecords });
-    await user.save();
-    res.status(201).json(user);
+    const user = new User({ email, displayName, maxRecords })
+    await user.save()
+    res.status(201).json(user)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create user' });
+    res.status(500).json({ error: 'Failed to create user' })
   }
-};
+}
 
 export const getUserIdByEmail = async (req: Request, res: Response) => {
   try {
-    const { email } = req.params;
-    const user = await User.findOne({ email }, '_id');
+    const { email } = req.params
+    const user = await User.findOne({ email }, '_id')
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' })
     }
 
-    res.json({ userId: user._id });
+    res.json({ userId: user._id })
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch user ID by email' });
+    res.status(500).json({ error: 'Failed to fetch user ID by email' })
   }
-};
+}
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    const users = await User.find({}, '-__v');
-    res.json(users);
+    const users = await User.find({}, '-__v')
+    res.json(users)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch users' });
+    res.status(500).json({ error: 'Failed to fetch users' })
   }
-};
+}
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const { email, displayName, maxRecords } = req.body;
-    const user = await User.findById(id);
+    const { id } = req.params
+    const { email, displayName, maxRecords } = req.body
+    const user = await User.findById(id)
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' })
     }
     if (email) {
-      user.email = email;
+      user.email = email
     }
     if (displayName) {
-      user.displayName = displayName;
+      user.displayName = displayName
     }
-    await user.save();
-    res.json(user);
+    await user.save()
+    res.json(user)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update user' });
+    res.status(500).json({ error: 'Failed to update user' })
   }
-};
+}
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const user = await User.findByIdAndDelete(id);
+    const { id } = req.params
+    const user = await User.findByIdAndDelete(id)
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' })
     }
-    res.json({ message: 'User deleted successfully' });
+    res.json({ message: 'User deleted successfully' })
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete user' });
+    res.status(500).json({ error: 'Failed to delete user' })
   }
-};
+}
+
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params
+    const obj = await User.findById(id, '-__v')
+
+    if (!obj) {
+      return res.status(404).json({ error: 'User not found' })
+    }
+
+    res.json(obj)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user by ID' })
+  }
+}
