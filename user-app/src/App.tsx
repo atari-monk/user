@@ -11,6 +11,8 @@ import { AppDiv, AppMenu } from 'ui-lib'
 import AppForm from './page/AppForm'
 import AppList from './page/AppList'
 import AppEdit from './component/AppEdit'
+import UserList from './component/UserList'
+import UserEdit from './component/UserEdit'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -27,6 +29,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             {isLoggedIn ? (
               <>
+                <Route path="/user_list" element={<UserList />} />
+                <Route path="/user_edit/:userId" element={<UserEdit />} />
                 <Route path="/user_form" element={<UserForm />} />
                 <Route path="/app_list" element={<AppList />} />
                 <Route path="/app_edit/:appId" element={<AppEdit />} />
@@ -34,6 +38,7 @@ const App: React.FC = () => {
               </>
             ) : (
               <>
+                <Route path="/user_list" element={<p>Log in to see forms</p>} />
                 <Route path="/user_form" element={<p>Log in to see forms</p>} />
                 <Route path="/app_list" element={<p>Log in to see forms</p>} />
                 <Route path="/app_form" element={<p>Log in to see forms</p>} />

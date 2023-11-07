@@ -7,10 +7,9 @@ const AppList: React.FC = () => {
   const [apps, setApps] = useState<IApp[]>([])
 
   useEffect(() => {
-    // Fetch the list of apps from your API
     const fetchApps = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/apps') // Update the API endpoint
+        const response = await axios.get('http://localhost:3000/api/v1/apps')
         setApps(response.data)
       } catch (error) {
         console.error('Failed to fetch apps:', error)

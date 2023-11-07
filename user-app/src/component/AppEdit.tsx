@@ -3,20 +3,19 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { IApp } from '../api/IApp'
 
-const initialFormData = {
+const initialFormData: IApp = {
+  _id: '',
   name: '',
   desc: '',
 }
 
 const AppEdit: React.FC = () => {
-  const { appId } = useParams<{ appId: string }>() // Get the appId from the URL
-
-  const [app, setApp] = useState<IApp | null>(null)
+  const { appId } = useParams<{ appId: string }>()
+  const [app, setApp] = useState<IApp>(initialFormData)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
 
-    // Update the 'app' state with the changes
     setApp((prevApp: IApp | null) => ({
       ...prevApp!,
       [name]: value,
@@ -27,10 +26,9 @@ const AppEdit: React.FC = () => {
     event.preventDefault()
 
     try {
-      // Create an object with the updated data
       const updatedData = {
-        name: app?.name, // or formData.name if you prefer
-        desc: app?.desc, // or formData.desc if you prefer
+        name: app?.name,
+        desc: app?.desc,
       }
 
       const response = await axios.patch<IApp>(
@@ -38,28 +36,22 @@ const AppEdit: React.FC = () => {
         updatedData
       )
 
-      // Check if the update was successful and handle accordingly
       if (response.status === 200) {
-        // Update was successful
         console.log('App updated successfully')
-        // You can also reset successMessage and errorMessage state here, if needed
       } else {
-        // Handle other status codes or errors as needed
         console.error('Update failed:', response.data)
       }
     } catch (error) {
       console.error('Error updating app:', error)
-      // Handle the error, for example, by setting an errorMessage state
     }
   }
 
   useEffect(() => {
-    // Fetch the app data by ID
     const fetchApp = async () => {
       try {
         const response = await axios.get(
           `http://localhost:3000/api/v1/apps/${appId}`
-        ) // Update the API endpoint
+        )
         setApp(response.data)
       } catch (error) {
         console.error('Failed to fetch app:', error)
@@ -74,7 +66,6 @@ const AppEdit: React.FC = () => {
       <h2>Edit App</h2>
       {app && (
         <form onSubmit={handleSubmit}>
-          {/* Display the app data and update the form fields */}
           <div>
             <label>Name:</label>
             <input
