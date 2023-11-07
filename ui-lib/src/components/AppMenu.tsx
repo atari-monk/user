@@ -14,7 +14,7 @@ const AppMenu: React.FC<IAppMenuProps> = ({ axiosInstance }) => {
 
   return (
     <AppMenuContainer>
-      <AppNameH1>Task App</AppNameH1>
+      <AppNameH1>{appConfig.appName}</AppNameH1>
       <MenuDiv>
         <LoginGoogle
           config={appConfig}

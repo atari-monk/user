@@ -14,6 +14,7 @@ import AppEdit from './component/AppEdit'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
+  appConfig.appName = 'User App'
 
   return (
     <AppDiv className={`App`}>
