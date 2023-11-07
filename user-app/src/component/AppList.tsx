@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { IApp } from './IApp'
+import { IApp } from '../api/IApp'
 
 const AppList: React.FC = () => {
   const [apps, setApps] = useState<IApp[]>([])
