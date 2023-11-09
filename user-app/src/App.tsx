@@ -13,6 +13,7 @@ import AppList from './page/AppList'
 import AppEdit from './component/AppEdit'
 import UserList from './component/UserList'
 import UserEdit from './component/UserEdit'
+import UserAppsForm from './component/UserAppsForm'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -35,6 +36,7 @@ const App: React.FC = () => {
                 <Route path="/app_list" element={<AppList />} />
                 <Route path="/app_edit/:appId" element={<AppEdit />} />
                 <Route path="/app_form" element={<AppForm />} />
+                <Route path="/user_apps" element={<UserAppsForm />} />
               </>
             ) : (
               <>
@@ -42,6 +44,7 @@ const App: React.FC = () => {
                 <Route path="/user_form" element={<p>Log in to see forms</p>} />
                 <Route path="/app_list" element={<p>Log in to see forms</p>} />
                 <Route path="/app_form" element={<p>Log in to see forms</p>} />
+                <Route path="/user_apps" element={<p>Log in to see forms</p>} />
               </>
             )}
           </Routes>
