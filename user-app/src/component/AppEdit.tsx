@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { IApp } from '../api/IApp'
+import { appConfig } from 'auth-lib'
 
 const initialFormData: IApp = {
   _id: '',
@@ -32,7 +33,7 @@ const AppEdit: React.FC = () => {
       }
 
       const response = await axios.patch<IApp>(
-        `http://localhost:3000/api/v1/apps/${appId}`,
+        `${appConfig.apiUrl}/apps/${appId}`,
         updatedData
       )
 
@@ -49,9 +50,7 @@ const AppEdit: React.FC = () => {
   useEffect(() => {
     const fetchApp = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/apps/${appId}`
-        )
+        const response = await axios.get(`${appConfig.apiUrl}/apps/${appId}`)
         setApp(response.data)
       } catch (error) {
         console.error('Failed to fetch app:', error)

@@ -1,3 +1,4 @@
+import { appConfig } from 'auth-lib'
 import axios from 'axios'
 import React, { useState } from 'react'
 
@@ -25,7 +26,7 @@ const UserForm: React.FC = () => {
     setSubmitting(true)
 
     try {
-      await axios.post('http://localhost:3000/api/v1/users', {
+      await axios.post(`${appConfig.apiUrl}/users`, {
         email: formData.email,
         displayName: formData.name,
       })

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IUser } from '../api/IUser'
 import { useParams } from 'react-router-dom'
+import { appConfig } from 'auth-lib'
 
 const initialFormData: IUser = {
   _id: '',
@@ -32,7 +33,7 @@ const UserEdit: React.FC = () => {
       }
 
       const response = await axios.patch<IUser>(
-        `http://localhost:3000/api/v1/users/${userId}`,
+        `${appConfig.apiUrl}/users/${userId}`,
         updatedData
       )
 
@@ -50,7 +51,7 @@ const UserEdit: React.FC = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get<IUser>(
-          `http://localhost:3000/api/v1/users/${userId}`
+          `${appConfig.apiUrl}/users/${userId}`
         )
         setUser(response.data)
       } catch (error) {

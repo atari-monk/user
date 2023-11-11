@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { IUser } from '../api/IUser'
+import { appConfig } from 'auth-lib'
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([])
@@ -9,9 +10,7 @@ const UserList: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get<IUser[]>(
-          'http://localhost:3000/api/v1/users'
-        )
+        const response = await axios.get<IUser[]>(`${appConfig.apiUrl}/users`)
         setUsers(response.data)
       } catch (error) {
         console.error('Failed to fetch users:', error)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { appConfig } from 'auth-lib'
 
 const AppForm: React.FC = () => {
   const initialFormData = {
@@ -25,7 +26,7 @@ const AppForm: React.FC = () => {
     setSubmitting(true)
 
     try {
-      await axios.post('http://localhost:3000/api/v1/apps', {
+      await axios.post(`${appConfig.apiUrl}/apps`, {
         name: formData.name,
         desc: formData.desc,
       })

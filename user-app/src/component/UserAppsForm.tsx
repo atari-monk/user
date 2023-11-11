@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { IUser } from '../api/IUser'
 import { IApp } from '../api/IApp'
+import { appConfig } from 'auth-lib'
 
 const UserAppsForm: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([])
@@ -17,11 +18,9 @@ const UserAppsForm: React.FC = () => {
     const fetchUsersAndApps = async () => {
       try {
         const usersResponse = await axios.get<IUser[]>(
-          'http://localhost:3000/api/v1/users'
+          `${appConfig.apiUrl}/users`
         )
-        const appsResponse = await axios.get<IApp[]>(
-          'http://localhost:3000/api/v1/apps'
-        )
+        const appsResponse = await axios.get<IApp[]>(`${appConfig.apiUrl}/apps`)
         setUsers(usersResponse.data)
         setApps(appsResponse.data)
       } catch (error) {
@@ -37,7 +36,7 @@ const UserAppsForm: React.FC = () => {
     setSubmitting(true)
 
     try {
-      await axios.post('http://localhost:3000/api/v1/user-apps', {
+      await axios.post(`${appConfig.apiUrl}/user-apps`, {
         userId: selectedUser,
         appId: selectedApp,
       })

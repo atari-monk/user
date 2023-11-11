@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { IApp } from '../api/IApp'
+import { appConfig } from 'auth-lib'
 
 const AppList: React.FC = () => {
   const [apps, setApps] = useState<IApp[]>([])
@@ -9,7 +10,7 @@ const AppList: React.FC = () => {
   useEffect(() => {
     const fetchApps = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/apps')
+        const response = await axios.get(`${appConfig.apiUrl}/apps`)
         setApps(response.data)
       } catch (error) {
         console.error('Failed to fetch apps:', error)
