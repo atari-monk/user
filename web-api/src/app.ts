@@ -12,12 +12,12 @@ dotenv.config({ path: path.resolve(__dirname, './../.env') })
 
 const app = express()
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
-app.use('/api/v1/users', userRouter)
-app.use('/api/v1/apps', appRouter)
-app.use('/api/v1/app-limits', appLimitsRouter)
-app.use('/api/v1/user-apps', userAppsRouter)
+app.use('/user-api/v1/users', userRouter)
+app.use('/user-api/v1/apps', appRouter)
+app.use('/user-api/v1/app-limits', appLimitsRouter)
+app.use('/user-api/v1/user-apps', userAppsRouter)
 
 export default app

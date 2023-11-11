@@ -22,16 +22,18 @@ export const createUserApp = async (req: Request, res: Response) => {
 
 export const getUserApps = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params // Assuming the userId is passed in the request parameters
+    const { userId } = req.params
     const userApps = await UserApps.find({ userId }, '-__v')
 
-    if (!userApps || userApps.length === 0) {
+    const userIds: string[] = userApps.map((userApp) => userApp.appId.toString())
+
+    if (!userIds || userIds.length === 0) {
       return res
         .status(404)
         .json({ error: 'No apps found for the specified user' })
     }
 
-    res.json(userApps)
+    res.json(userIds)
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch user apps' })
   }
@@ -64,5 +66,19 @@ export const deleteUserApp = async (req: Request, res: Response) => {
     res.json({ message: 'User-App relationship deleted successfully' })
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete User-App relationship' })
+  }
+}
+
+export const getAllUserApps = async (req: Request, res: Response) => {
+  try {
+    const userApps = await UserApps.find({}, '-__v')
+
+    if (!userApps || userApps.length === 0) {
+      return res.status(404).json({ error: 'No user apps found' })
+    }
+
+    res.json(userApps)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user apps' })
   }
 }
