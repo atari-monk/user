@@ -3,9 +3,9 @@ import AppLimits from '../models/AppLimits'
 
 export const createAppLimits = async (req: Request, res: Response) => {
   try {
-    const { appId, limits } = req.body
+    const { appId, plan, limits } = req.body
 
-    if (!appId || !limits || !Array.isArray(limits)) {
+    if (!appId || !plan || !limits || !Array.isArray(limits)) {
       return res.status(400).json({ error: 'Invalid request body' })
     }
 
@@ -17,7 +17,7 @@ export const createAppLimits = async (req: Request, res: Response) => {
         .json({ error: 'App limits already exist for this app' })
     }
 
-    const appLimits = new AppLimits({ appId, limits })
+    const appLimits = new AppLimits({ appId, plan, limits })
     await appLimits.save()
     res.status(201).json(appLimits)
   } catch (error) {
@@ -25,15 +25,12 @@ export const createAppLimits = async (req: Request, res: Response) => {
   }
 }
 
-export const getAppLimits = async (req: Request, res: Response) => {
+export const getAllAppLimits = async (req: Request, res: Response) => {
   try {
-    const { appId } = req.params // Assuming the appId is passed in the request parameters
-    const appLimits = await AppLimits.findOne({ appId }, '-__v')
+    const appLimits = await AppLimits.find({}, '-__v')
 
     if (!appLimits) {
-      return res
-        .status(404)
-        .json({ error: 'App limits not found for the specified app' })
+      return res.status(404).json({ error: 'No app limits found' })
     }
 
     res.json(appLimits)

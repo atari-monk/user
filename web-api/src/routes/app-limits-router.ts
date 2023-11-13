@@ -3,11 +3,11 @@ import * as appLimitsController from '../controllers/app-limits-controller'
 
 const router = express.Router()
 
-router.route('/').post(appLimitsController.createAppLimits)
+router.route('/:appId').patch(appLimitsController.updateAppLimits)
 
 router
-  .route('/:appId')
-  .get(appLimitsController.getAppLimits)
-  .patch(appLimitsController.updateAppLimits)
+  .route('/')
+  .post(appLimitsController.createAppLimits)
+  .get(appLimitsController.getAllAppLimits)
 
 export default router

@@ -16,6 +16,7 @@ import UserEdit from './component/UserEdit'
 import UserAppsForm from './component/UserAppsForm'
 import UsersAppsList from './component/UsersAppsList'
 import AppLimitsForm from './component/AppLimitsForm'
+import AppsLimitsList from './component/AppsLimitsList'
 
 const App: React.FC = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -40,6 +41,7 @@ const App: React.FC = () => {
                 <Route path="/app_form" element={<AppForm />} />
                 <Route path="/users_apps_list" element={<UsersAppsList />} />
                 <Route path="/user_apps_form" element={<UserAppsForm />} />
+                <Route path="/apps_limits_list" element={<AppsLimitsList />} />
                 <Route path="/app_limits_form" element={<AppLimitsForm />} />
               </>
             ) : (
@@ -54,6 +56,14 @@ const App: React.FC = () => {
                 />
                 <Route
                   path="/user_apps_form"
+                  element={<p>Log in to see forms</p>}
+                />
+                <Route
+                  path="/apps_limits_list"
+                  element={<p>Log in to see forms</p>}
+                />
+                <Route
+                  path="/app_limits_form"
                   element={<p>Log in to see forms</p>}
                 />
               </>
