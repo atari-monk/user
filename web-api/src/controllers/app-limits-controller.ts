@@ -4,6 +4,11 @@ import AppLimits from '../models/AppLimits'
 export const createAppLimits = async (req: Request, res: Response) => {
   try {
     const { appId, limits } = req.body
+
+    if (!appId || !limits || !Array.isArray(limits)) {
+      return res.status(400).json({ error: 'Invalid request body' })
+    }
+
     const existingAppLimits = await AppLimits.findOne({ appId })
 
     if (existingAppLimits) {

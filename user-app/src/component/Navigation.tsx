@@ -42,6 +42,11 @@ const Navigation: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link to="/app_limits_form" className="App-link">
+            App Limits Form
+          </Link>
+        </li>
+        <li>
           <Link to="/about" className="App-link">
             About
           </Link>
