@@ -8,3 +8,6 @@ export { default as LoginGoogle } from './components/login/LoginGoogle'
 export { appConfig } from './config/appConfig'
 //interfaces
 export { default as IAppConfig } from './interfaces/config/IAppConfig'
+//user_web_api
+export { default as createUser } from './user_web_api/user'
+export { IUser } from './user_web_api/IUser'

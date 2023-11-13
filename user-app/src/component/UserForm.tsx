@@ -1,14 +1,14 @@
-import { appConfig } from 'auth-lib'
+import { createUser, IUser } from 'auth-lib'
 import axios from 'axios'
 import React, { useState } from 'react'
 
 const UserForm: React.FC = () => {
-  const initialFormData = {
-    name: '',
+  const initialFormData: IUser = {
+    displayName: '',
     email: '',
   }
 
-  const [formData, setFormData] = useState(initialFormData)
+  const [formData, setFormData] = useState<IUser>(initialFormData)
   const [submitting, setSubmitting] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -26,14 +26,16 @@ const UserForm: React.FC = () => {
     setSubmitting(true)
 
     try {
-      await axios.post(`${appConfig.apiUrl}/users`, {
-        email: formData.email,
-        displayName: formData.name,
-      })
+      const result = await createUser(axios, formData)
 
-      setSuccessMessage('User created successfully')
-      setErrorMessage('')
-      setFormData(initialFormData)
+      if (result === 'User created successfully') {
+        setSuccessMessage(result)
+        setErrorMessage('')
+        setFormData(initialFormData)
+      } else {
+        setErrorMessage(result)
+        setSuccessMessage('')
+      }
     } catch (error) {
       setErrorMessage('Error creating user. Please try again.')
       setSuccessMessage('')
@@ -50,8 +52,8 @@ const UserForm: React.FC = () => {
           <label>Name:</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="displayName"
+            value={formData.displayName}
             onChange={handleInputChange}
             required
           />
